@@ -83,17 +83,19 @@
     </div>
     <div style="width:100%;">
   <?php
-    $qry = "SELECT * FROM `notices` like '%$search%' ORDER BY timestamp";
+    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY timestamp";
     $count = 0;
+    
     $result = mysqli_query($mysqli,$qry);
     if (!$result) {
-    } else  {
+    } 
+    else  {
       while ($row = mysqli_fetch_assoc($result)) {
         echo "<div class='container-fluid alert' style='float:left;width:device-width;'>";
           $count++;
-          if($row['priority']=="High")
-            echo "<div class='alert alert-warning' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
           if($row['priority']=="Moderate")
+            echo "<div class='alert alert-warning' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+          if($row['priority']=="High")
             echo "<div class='alert alert-danger' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
           if($row['priority']=="Low")
             echo "<div class='alert alert-success' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
