@@ -63,7 +63,7 @@
               header("Location: student.php");
               exit();
             }elseif ($_POST['password']==$query['parent_pass']){
-              header("Location: parents.php");
+              header("Location: parent.php");
               $_SESSION['$type'] = "Parent";
               exit();
             }

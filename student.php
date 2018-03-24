@@ -1,5 +1,6 @@
 <?php
   session_start();
+  $_SESSION['$last_page']="index.php";
   if(!isset($_SESSION['$pid'])){
     echo '<script type="text/javascript">alert("Login First!")</script>';
     header("Location: {$_SESSION['$last_page']}");
@@ -25,7 +26,7 @@
 </head>
 <body style="background-color: #e8f0ff;">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 9999; width: 100%">
-      <a class="navbar-brand" href="#"><img src="img/concat_logo.png" width="20px" height="20px" style="margin-bottom: 5px" alt="ConCat"> ConCat</a>
+      <a class="navbar-brand" href="#"><img src="img/concat_logo.png" width="20px" height="20px" style="margin-bottom: 5px" alt="UnScript"> UnScript</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -108,4 +109,4 @@
 </div>
 </body>
 </html>
-<?php $_SESSION['$last_page'] = "student.php"; ?>
+<?php $_SESSION['$last_page'] = "index.php"; ?>
