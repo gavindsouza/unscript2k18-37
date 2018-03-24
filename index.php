@@ -107,7 +107,7 @@
             } else {
               $search = '';
             }
-            $qry="SELECT distinct priority from `events` WHERE visibility='1'";
+            $qry="SELECT distinct priority from `events`";
             $res=mysqli_query($mysqli,$qry);
                 while ($r=mysqli_fetch_assoc($res)) {
                 if ($r['priority']==$search) {
@@ -124,15 +124,20 @@
       </form>
     </div>
   <?php
-    $qry = "SELECT * FROM `events` INNER JOIN `speakers` WHERE events.speaker_id = speakers.speaker_id AND events.visibility = '1' AND events.comm_name LIKE '%$search%' ORDER BY events.event_sdate";
+    $qry = "SELECT * FROM `notices` ORDER BY timestamp";
     $count = 0;
     $result = mysqli_query($mysqli,$qry);
     if (!$result) {
     } else  {
       while ($row = mysqli_fetch_assoc($result)) {
-        if(strtotime('today')<strtotime($row['timestamp'])){
+        //if(strtoday(date("d/m/Y"))<strtotime($row['timestamp'])){
           $count++;
-          echo "<div class='card col-md-4' id='card-resp' style='float: left; padding: 15px; margin: 2%; align-items: center'>hello</div>";
+          if($row['priority']=="High")
+            echo "<div class='alert alert-warning fade in'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
+          if($row['priority']=="High")
+            echo "<div class='alert alert-danger fade in'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
+          if($row['priority']=="High")
+            echo "<div class='alert alert-success fade in'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
          /* "<div class='card col-md-4' id='card-resp' style='float: left; padding: 15px; margin: 2%; align-items: center'>
             <img src = 'img/" . $row['comm_name'] . "_logo.jpg' alt='" . $row['comm_name'] . "' style='width:200px; height:200px; border-radius: 100px;' align={center}>
             <br>
@@ -143,7 +148,7 @@
             echo "</p>
            <p style='width:100%'><form method='post' action='view_event.php?event_id=".$row['event_id']."'><button class='btn btn-primary' type='submit' name='event_id' value='".$row['event_id']."'>More Information</button></form></p>
           </div>"; */
-        }
+        //}
         }
       }
       if ($count == 0) {

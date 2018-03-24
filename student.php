@@ -132,7 +132,7 @@
       while ($row = mysqli_fetch_assoc($result)) {
         if(strtotime('today')<strtotime($row['timestamp'])){
           $count++;
-          echo "<div class='card col-md-4' id='card-resp' style='float: left; padding: 15px; margin: 2%; align-items: center'>hello</div>"
+          echo "<div class='card col-md-4' id='card-resp' style='float: left; padding: 15px; margin: 2%; align-items: center'>hello</div>";
          /* "<div class='card col-md-4' id='card-resp' style='float: left; padding: 15px; margin: 2%; align-items: center'>
             <img src = 'img/" . $row['comm_name'] . "_logo.jpg' alt='" . $row['comm_name'] . "' style='width:200px; height:200px; border-radius: 100px;' align={center}>
             <br>
