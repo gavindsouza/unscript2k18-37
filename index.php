@@ -21,6 +21,7 @@
 	<script src="js/jquery-3.2.1.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 </head>
 
 <body>
@@ -107,7 +108,7 @@
             } else {
               $search = '';
             }
-            $qry="SELECT distinct priority from `events`";
+            $qry="SELECT distinct priority from `notices`";
             $res=mysqli_query($mysqli,$qry);
                 while ($r=mysqli_fetch_assoc($res)) {
                 if ($r['priority']==$search) {
@@ -130,14 +131,16 @@
     if (!$result) {
     } else  {
       while ($row = mysqli_fetch_assoc($result)) {
-        //if(strtoday(date("d/m/Y"))<strtotime($row['timestamp'])){
+        //if(strtoday(date("d-m-Y"))<strtotime($row['timestamp'])){
+        echo "<div class='alert' style='float:left;'>";
           $count++;
           if($row['priority']=="High")
-            echo "<div class='alert alert-warning fade in'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
-          if($row['priority']=="High")
-            echo "<div class='alert alert-danger fade in'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
-          if($row['priority']=="High")
-            echo "<div class='alert alert-success fade in'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
+            echo "<div class='alert alert-warning fade in' style='float:left;width:100%;'><strong><a href='#' class='alert-link'><b>".$row['header']."</b><br><p>".$row['description']."</p></a></strong></div>";
+          else if($row['priority']=="Moderate")
+            echo "<div class='alert alert-danger fade in' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
+          else if($row['priority']=="Low")
+            echo "<div class='alert alert-success fade in' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
+          echo "</div>";
          /* "<div class='card col-md-4' id='card-resp' style='float: left; padding: 15px; margin: 2%; align-items: center'>
             <img src = 'img/" . $row['comm_name'] . "_logo.jpg' alt='" . $row['comm_name'] . "' style='width:200px; height:200px; border-radius: 100px;' align={center}>
             <br>
