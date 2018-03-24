@@ -32,15 +32,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="studentinfo.php">Edit Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="review.php">Review</a>
-      </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Notices<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="studentattend.php">Attendance</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="studentacademics.php">Academics</a>
+        </li>
     </ul>
     <div class = "navbar-text"> Signed in as <i><?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name']; ?></i></div>
   <form action="logout.php" method="post" style="float: right;">
