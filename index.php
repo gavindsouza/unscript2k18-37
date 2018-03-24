@@ -8,6 +8,12 @@
     } elseif ($_SESSION['$type'] == 'Faculty') {
       header("Location: faculty.php");
       exit();
+    } elseif ($_SESSION['$type'] == 'Parent') {
+      header("Location: parent.php");
+      exit();
+    } elseif ($_SESSION['$type'] == 'Administrator') {
+      header("Location: admin.php");
+      exit();
     }
   }
   session_destroy();
@@ -44,20 +50,23 @@
           echo " <div class='navbar-text' style='margin: 0px 5px; color: red;''>Invalid Details!</div> ";
         } else {
           session_start();
-          $query = "SELECT pid,f_name,l_name,type FROM users WHERE pid = '$pid' LIMIT 1";
+          $query = "SELECT pid,f_name,l_name,type,user_pass,parent_pass FROM users WHERE pid = '$pid' LIMIT 1";
           $query = $mysqli->query($query);
           $query = $query->fetch_assoc();
           $_SESSION['$type'] = $query['type'];
           $_SESSION['$pid'] = $query['pid'];
           $_SESSION['$first_name'] = $query['f_name'];
           $_SESSION['$last_name'] = $query['l_name'];
+          
           if ($_SESSION['$type'] == 'Student') {
           	if($_POST['password']==$query['user_pass']){
               header("Location: student.php");
+              exit();
             }elseif ($_POST['password']==$query['parent_pass']){
               header("Location: parents.php");
+              $_SESSION['$type'] = "Parent";
+              exit();
             }
-            exit();
           } elseif ($_SESSION['$type'] == "Faculty") {
             header("Location: faculty.php");
             exit();
