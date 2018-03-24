@@ -21,9 +21,7 @@
 	<script src="js/jquery-3.2.1.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 </head>
-
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   		<a class="navbar-brand" href="#"><img src="img/concat_logo.png" width="20px" height="20px" style="margin-bottom: 5px" alt="ConCat"> 		ConCat</a>
@@ -41,7 +39,7 @@
         $result = $query->fetch_assoc();
         $check1 = $_POST['password']==$result['user_pass'];
         $check2 = $_POST['password']==$result['parent_pass'];
-        $result = $mysqli->query("SELECT * FROM users WHERE pid = '$pid' AND ('$check1' OR '$check2') LIMIT 1");
+        $result = $mysqli->query("SELECT * FROM users WHERE pid = '$pid' AND '".($check2 or $check1)."' LIMIT 1");
         if (!$result) {
           echo " <div class='navbar-text' style='margin: 0px 5px; color: red;''>Invalid Details!</div> ";
         } else {
@@ -54,9 +52,9 @@
           $_SESSION['$first_name'] = $query['f_name'];
           $_SESSION['$last_name'] = $query['l_name'];
           if ($_SESSION['$type'] == 'Student') {
-          	if($_SESSION['password']==$_POST['user_pass']){
+          	if($_POST['password']==$query['user_pass']){
               header("Location: student.php");
-            }elseif ($_SESSION['password']==$_POST['parent_pass']){
+            }elseif ($_POST['password']==$query['parent_pass']){
               header("Location: parents.php");
             }
             exit();
@@ -92,7 +90,7 @@
     </div>
   </form>
 </nav>
-  <div id="mainbox" class="container-fluid">
+  <div id="mainbox" class="container-fluid" style="float:left;width:100%;">
     <div style="width: 90%; margin-top: 1%">
       <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group" style="float: right; width: 100% display: inline-block;">
@@ -124,6 +122,7 @@
         </div>
       </form>
     </div>
+    <div style="width:100%;">
   <?php
     $qry = "SELECT * FROM `notices` ORDER BY timestamp";
     $count = 0;
@@ -131,33 +130,22 @@
     if (!$result) {
     } else  {
       while ($row = mysqli_fetch_assoc($result)) {
-        //if(strtoday(date("d-m-Y"))<strtotime($row['timestamp'])){
-        echo "<div class='alert' style='float:left;'>";
+        echo "<div class='container-fluid alert' style='float:left;width:device-width;'>";
           $count++;
           if($row['priority']=="High")
-            echo "<div class='alert alert-warning fade in' style='float:left;width:100%;'><strong><a href='#' class='alert-link'><b>".$row['header']."</b><br><p>".$row['description']."</p></a></strong></div>";
-          else if($row['priority']=="Moderate")
-            echo "<div class='alert alert-danger fade in' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
-          else if($row['priority']=="Low")
-            echo "<div class='alert alert-success fade in' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>Example</a></strong></div>";
+            echo "<div class='alert alert-warning' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+          if($row['priority']=="Moderate")
+            echo "<div class='alert alert-danger' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+          if($row['priority']=="Low")
+            echo "<div class='alert alert-success' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
           echo "</div>";
-         /* "<div class='card col-md-4' id='card-resp' style='float: left; padding: 15px; margin: 2%; align-items: center'>
-            <img src = 'img/" . $row['comm_name'] . "_logo.jpg' alt='" . $row['comm_name'] . "' style='width:200px; height:200px; border-radius: 100px;' align={center}>
-            <br>
-            <h2>".$row['event_name']."</h2>
-            <p class='title'>" . $row['speaker_fname']. " " . $row['speaker_lname'] . "</p>
-            <p>";
-            if($row['event_sdate']!=$row['event_edate']) { echo date('dS M Y',strtotime($row['event_sdate'])) . " to " . date('dS M Y',strtotime($row['event_edate'])); } else { echo date('dS M Y',strtotime($row['event_sdate'])); }
-            echo "</p>
-           <p style='width:100%'><form method='post' action='view_event.php?event_id=".$row['event_id']."'><button class='btn btn-primary' type='submit' name='event_id' value='".$row['event_id']."'>More Information</button></form></p>
-          </div>"; */
-        //}
         }
       }
       if ($count == 0) {
         echo "<div class = 'container-fluid' style = 'text-align: center; margin: 20px;'><h1>No Notices found!</h1></div>";
       }
   ?>
+  </div>
   </div>
 </div>
 </body>
