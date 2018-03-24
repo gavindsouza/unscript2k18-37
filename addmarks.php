@@ -13,7 +13,7 @@
       		exit();
     	}
   	}
-?>
+?> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,11 +34,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="addmarks.php">Update Marks</a>
+        <a class="nav-link" href="faculty.php">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Update Marks<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="messages.php">View Messages</a>
@@ -53,13 +53,36 @@
 </nav>
 
 <div class="container-fluid">
-  <label><b>Add Attendance</b></label>
-<?php
-include 'db.php';
-$d="2018/03/05";
+<div class="container">
+  <form method="Get" action="updatemarks.php">
+    <div class="form-group">
+      <label for="usr">Department</label>
+      <input type="text" class="form-control" name="dept">
+    </div>
+    <div class="form-group">
+      <label for="usr">Year</label>
+      <input type="text" class="form-control" name="year">
+    </div>
+    <div class="form-group">
+      <label for="usr">Class</label>
+      <input type="text" class="form-control" name="cls">
+  </div>
+  <div class="form-group">
+      <label for="usr">Subject</label>
+      <input type="text" class="form-control" name="sub">
+  </div>
 
-?>
+  <div class="radio">
+      <label><input type="radio" name="iat" value="1">IAT 1</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="iat" value="2">IAT 2</label>
+    </div>
+  <button type="submit" name="subm" class="btn-info">Update marks for this class</button>
+  </form>  
+</div>
+
 </div>
 </body>
 </html>
-<?php $_SESSION['$last_page'] = "index.php"; ?>
+<?php $_SESSION['$last_page'] = "faculty.php"; ?>

@@ -141,14 +141,15 @@
     } 
     else  {
       while ($row = mysqli_fetch_assoc($result)) {
+        echo "<div class='container-fluid alert' style='float:left;width:device-width;'>";
           $count++;
           if($row['priority']=="Moderate")
-            echo "<div class='container-fluid alert alert-warning' style='float:left;width:device-width;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+            echo "<div class='alert alert-warning' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
           if($row['priority']=="High")
-            echo "<div class='container-fluid alert alert-danger' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+            echo "<div class='alert alert-danger' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
           if($row['priority']=="Low")
-            echo "<div class='container-fluid alert alert-success' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
-          //echo "</div>";
+            echo "<div class='alert alert-success' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+          echo "</div>";
         }
       }
       if ($count == 0) {

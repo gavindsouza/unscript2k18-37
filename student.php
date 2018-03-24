@@ -40,8 +40,9 @@
           <a class="nav-link" href="studentattend.php">Attendance</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="studentacademics.php">Academics</a>
+          <a class="nav-link" href="studentacademics.php">View Marks</a>
         </li>
+
     </ul>
     <div class = "navbar-text"> Signed in as <i><?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name']; ?></i></div>
   <form action="logout.php" method="post" style="float: right;">
@@ -49,6 +50,7 @@
   </form>
   </div>
 </nav>
+<a href="marksdata.php">View Marks</a>
   <div id="mainbox" class="container-fluid" style="float:left;width:100%;">
     <div style="width: 90%; margin-top: 1%">
       <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -63,7 +65,7 @@
             if(isset($_POST['search'])){
               $search = $_POST['valueToSearch'];
             } else {
-              $search = '';
+              $search ='';
             }
             $qry="SELECT distinct priority from `notices`";
             $res=mysqli_query($mysqli,$qry);
