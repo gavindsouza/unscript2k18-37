@@ -82,7 +82,7 @@
     </div>
     <div style="width:100%;">
   <?php
-    $qry = "SELECT * FROM `notices` ORDER BY timestamp";
+    $qry = "SELECT * FROM `notices` like '%$search%' ORDER BY timestamp";
     $count = 0;
     $result = mysqli_query($mysqli,$qry);
     if (!$result) {
