@@ -47,6 +47,9 @@
   </div>
 </nav>
 <div class="lead container" style="">
+	<form>
+
+	</form>
 	<h3>Functions Covered by Administrator:</h3>
 	<h4>User Management:</h4>
   <ul>
@@ -56,7 +59,8 @@
     <li>Deleting Users from select Range IDs</li>
     <li>Mass Adding Users in required numbers</li>
 	</ul>
-  <h4>Event Management:</h4>
+
+  <!--h4>Event Management:</h4>
   <ul>
     <li>Turning public visibility off</li>
     <li>Editing Event Details</li>
@@ -66,7 +70,7 @@
   <ul>
     <li>Updating Details</li>
     <li>Deleting Speakers</li>
-  </ul>
+  </ul-->
   <b style="color: red;">*Each identified by above tabs</b>
 </div>
 </body>

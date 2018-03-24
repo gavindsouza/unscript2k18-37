@@ -258,7 +258,7 @@
       $result = mysqli_query($mysqli,$qry);
       if($result){
         while ($row = mysqli_fetch_assoc($result)) {
-          echo "<tr><td><!--input type='checkbox' /--></td><td>".$row['pid']."</td><td>".$row['first_name']."</td><td>".$row['last_name']."</td>";
+          echo "<tr><td><!--input type='checkbox' /--></td><td>".$row['pid']."</td><td>".$row['f_name']."</td><td>".$row['l_name']."</td>";
           echo "<td><button type='submit' class='btn btn-primary' name='reset' value='reset' id='res".$row['pid']."'>Reset Password</button>
           <td><button type='submit' class='btn btn-danger' value='".$row['pid']."' id='del".$row['pid']."'>Delete</button></td>";
           echo "<script>
@@ -302,12 +302,12 @@
       <td></td>
     </thead>
     <tbody>
-    <?php
+    <!--?php
       $qry = "SELECT * from `users` where type='Committee'";
       $result = mysqli_query($mysqli,$qry);
       if($result){
         while ($row = mysqli_fetch_assoc($result)) {
-          echo "<tr><td><!--input type='checkbox' /--></td><td>".$row['pid']."</td><td>".$row['first_name'];
+          echo "<tr><td><!input type='checkbox' /--><!--/td><td>".$row['pid']."</td><td>".$row['f_name'];
          
           echo "<td><button type='submit' class='btn btn-primary' name='reset' value='reset' id='res".$row['pid']."'>Reset Password</button>
           <td><button type='submit' class='btn btn-danger' value='".$row['pid']."' id='del".$row['pid']."'>Delete</button></td>";
@@ -335,7 +335,7 @@
         }
       }
     ?>
-    </tbody>
+    </tbody-->
 </table>
 
 <!--Faculty-->
@@ -354,7 +354,7 @@
       $result = mysqli_query($mysqli,$qry);
       if($result){
         while ($row = mysqli_fetch_assoc($result)) {
-          echo "<tr><td><!--input type='checkbox' /--></td><td>".$row['pid']."</td><td>".$row['first_name']."</td><td>".$row['last_name'];
+          echo "<tr><td><!--input type='checkbox' /--></td><td>".$row['pid']."</td><td>".$row['f_name']."</td><td>".$row['l_name'];
          
           echo "<td><button type='submit' class='btn btn-primary' name='reset' value='reset' id='res".$row['pid']."'>Reset Password</button>
           <td><button type='submit' class='btn btn-danger' value='".$row['pid']."' id='del".$row['pid']."'>Delete</button></td>";
