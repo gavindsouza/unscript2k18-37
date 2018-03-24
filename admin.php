@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name'] . " | ConCat" ?></title>
+	<title><?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name'] . " | UnScript" ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
   	<link rel="stylesheet" type="text/css" href="css/styles.css">
