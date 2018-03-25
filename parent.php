@@ -43,7 +43,7 @@
           <a class="nav-link" href="studentacademics.php">Academics</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="studentacademics.php">Message Teacher</a>
+          <a class="nav-link" href="#">Contact Us</a>
         </li>
     </ul>
     <div class = "navbar-text"> Signed in Parent of <i><?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name']; ?></i></div>

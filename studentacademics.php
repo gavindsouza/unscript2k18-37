@@ -1,3 +1,18 @@
+<?php
+  session_start();
+    $_SESSION['$last_page']="index.php";
+    if(!isset($_SESSION['$pid'])){
+      echo '<script type="text/javascript">alert("Login First!")</script>';
+      header("Location: {$_SESSION['$last_page']}");
+      exit();
+    } else {
+      if($_SESSION['$type']!='Parent'){
+          echo '<script type="text/javascript">alert("Only accessible to a Parents!");</script>';
+          header("Location: {$_SESSION['$last_page']}");
+          exit();
+      }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,18 +43,13 @@
                     <a class="nav-link" href="#">Academics<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            <div class = "navbar-text"> Signed in as <i><?php echo $_SESSION['$f_name'] . " " . $_SESSION['$l_name']; ?></i></div>
+            <div class = "navbar-text"> Signed in as <i><?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name']; ?></i></div>
         	<form action="logout.php" method="post" style="float: right;">
         	    <button class="btn btn-secondary
               " style="margin-left: 10px;" type="submit" name="logout">Log Out</button>
         	</form>
         </div>
     </nav>
-
-
-
-
-
 <div class="container">
   <h2></h2>
   <p></p>            

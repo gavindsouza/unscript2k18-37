@@ -1,3 +1,18 @@
+<?php
+  session_start();
+    $_SESSION['$last_page']="index.php";
+    if(!isset($_SESSION['$pid'])){
+      echo '<script type="text/javascript">alert("Login First!")</script>';
+      header("Location: {$_SESSION['$last_page']}");
+      exit();
+    } else {
+      if($_SESSION['$type']!='Parent'){
+          echo '<script type="text/javascript">alert("Only accessible to a Parents!");</script>';
+          header("Location: {$_SESSION['$last_page']}");
+          exit();
+      }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +43,7 @@
                     <a class="nav-link" href="studentacademics.php">Academics</a>
                 </li>
             </ul>
-            <div class = "navbar-text"> Signed in as <i><?php echo $_SESSION['$f_name'] . " " . $_SESSION['$l_name']; ?></i></div>
+            <div class = "navbar-text"> Signed in as <i><?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name']; ?></i></div>
           <form action="logout.php" method="post" style="float: right;">
               <button class="btn btn-secondary" style="margin-left: 10px;" type="submit" name="logout">Log Out</button>
           </form>
@@ -53,49 +68,60 @@
             }
                      
             
-            ?>  
+            ?>
+            <input type="date" name="dateFrom" value="2017-03-05"/>  
           </select></div>
           <div style="float: left;">&nbsp;<button type="submit" class="btn btn-primary" style="float: right;" name="search" >Find</button></div>       
         </div>
       </form>
     </div>
     <?php
-      if($search=='1'){
-                $qry="SELECT * from `attend`  WHERE pid='1'";
-                $res=mysqli_query($mysqli,$qry);             
-                while ($r=mysqli_fetch_assoc($res)) {
-                
-                  }
-               }
-    ?>
-<?php
-$servername = "localhost";
-$username = "root";
-$password ='password';
-$dbname = "erp";
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-$pid=152030;
-// Create connection
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-$sql = "SELECT * FROM attend where pid=$pid";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo $row['pid'];
+    $new_date = date('Y-m-d', strtotime($_POST['dateFrom']));
+    #echo $new_date;
+    #put pid two lines down here session one
+    $qry="SELECT SUBSTRING(got.attendance,got.hour,1) as attended,got.subject,got.hour from
+    (SELECT a.attendance,t.hour,t.subject from attend a,timetable t,student s 
+    where a.pid= 152015 
+    AND a.ddate= '$new_date' 
+    and t.ddate = a.ddate 
+    AND t.year = s.year 
+    AND t.department = s.department 
+    AND s.class = t.class 
+    AND a.pid=s.pid 
+    AND ((t.type=1 AND t.batch = s.batch) OR (t.type = 0 and t.batch = 0))
+    ) got";
+    
+    #echo $qry;
+    $res=mysqli_query($mysqli,$qry);
+    if (mysqli_num_rows($res) > 0){
+        $att_num=0;
+        $att_num_tot=0;
+        // output data of each row
+        echo "<table class='table table-hover'>";
+        echo "<tr><th>Attendance on ".date('d-M-Y /D',strtotime($new_date))."</th><th>Subject</th></tr>";
+        while($row = mysqli_fetch_assoc($res)){
+            if($row["attended"] == 1){
+                $att='yes';
+                $att_num +=1;
+                $att_num_tot +=1;
+            }
+            elseif($row["attended"] == 0){
+                $att='no';
+                $att_num_tot +=1;
+            }
+            else
+                $att='cancalled';
+            //print accordingly here
+            echo "<tr>";
+            echo "<td>" . $att. " </td><td> " . $row["subject"]."</td>";
+            echo "</tr>";
+            
+        }
+        echo "<tr><th>Total</th><th>".(($att_num/$att_num_tot)*100)."%</th></tr>";
+        echo "</table>";
+    } else {
+        echo "0 results";
     }
-} else {
-    echo "0 results";
-}
-$conn->close();
-?>
-
+    ?>
 </body>
 </html>
