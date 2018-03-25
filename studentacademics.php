@@ -28,7 +28,7 @@
                     <a class="nav-link" href="#">Academics<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            <div class = "navbar-text"> Signed in as <i><!--< ?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name']; ?>--></i></div>
+            <div class = "navbar-text"> Signed in as <i><?php echo $_SESSION['$f_name'] . " " . $_SESSION['$l_name']; ?></i></div>
         	<form action="logout.php" method="post" style="float: right;">
         	    <button class="btn btn-secondary
               " style="margin-left: 10px;" type="submit" name="logout">Log Out</button>

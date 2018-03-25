@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
   session_start();
   $_SESSION['$last_page']="index.php";
@@ -58,6 +57,7 @@
   </div>
 </nav>
 <div class="lead container" style="">
+	<h3><br>Add a Notice:</h3>
 	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
 	  <div class="row">
 	    <div class="col-md-6 mb-3">
@@ -84,7 +84,7 @@
 	  	<button class="btn btn-primary" type="submit" name="submit" value="Upload">Submit form</button>
 	  </div>
 	</form>
-	<h3>Functions Covered by Administrator:</h3>
+	<!--h3>Functions Covered by Administrator:</h3>
 	<h4>User Management:</h4>
   <ul>
     <li>Adding New Users</li>
@@ -92,7 +92,7 @@
     <li>Resetting Individual Passwords</li>
     <li>Deleting Users from select Range IDs</li>
     <li>Mass Adding Users in required numbers</li>
-	</ul>
+	</ul-->
 
   <!--h4>Event Management:</h4>
   <ul>
@@ -104,14 +104,12 @@
   <ul>
     <li>Updating Details</li>
     <li>Deleting Speakers</li>
-  </ul-->
-  <b style="color: red;">*Each identified by above tabs</b>
+  </ul>
+  <b style="color: red;">*Each identified by above tabs</b-->
 </div>
 </body>
 </html>
 <?php $_SESSION['$last_page'] = "admin.php"; ?>
-=======
 <?php
 	$_SESSION['$last_page']="index.php";
 ?>
->>>>>>> a184a55eec59e5fa7f04e10d474e2d712bf7e8e2

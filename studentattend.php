@@ -28,7 +28,7 @@
                     <a class="nav-link" href="studentacademics.php">Academics</a>
                 </li>
             </ul>
-            <div class = "navbar-text"> Signed in as <i><!--< ?php echo $_SESSION['$first_name'] . " " . $_SESSION['$last_name']; ?>--></i></div>
+            <div class = "navbar-text"> Signed in as <i><?php echo $_SESSION['$f_name'] . " " . $_SESSION['$l_name']; ?></i></div>
           <form action="logout.php" method="post" style="float: right;">
               <button class="btn btn-secondary" style="margin-left: 10px;" type="submit" name="logout">Log Out</button>
           </form>
@@ -45,7 +45,7 @@
           
            <?php
             include 'db.php';
-            $search='0'
+            $search='0';
             if(isset($_POST['search'])){
               $search = '1';
             } else {
@@ -59,38 +59,15 @@
         </div>
       </form>
     </div>
-<?php
-if($search=='1')
-            {
+    <?php
+      if($search=='1'){
                 $qry="SELECT * from `attend`  WHERE pid='1'";
-                $res=mysqli_query($mysqli,$qry);
-            
-               
+                $res=mysqli_query($mysqli,$qry);             
                 while ($r=mysqli_fetch_assoc($res)) {
                 
                   }
                }
-            }
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ?>
 <?php
 $servername = "localhost";
 $username = "root";

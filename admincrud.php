@@ -258,8 +258,9 @@
       $result = mysqli_query($mysqli,$qry);
       if($result){
         while ($row = mysqli_fetch_assoc($result)) {
-          echo "<tr><td><!--input type='checkbox' /--></td><td>".$row['pid']."</td><td>".$row['f_name']."</td><td>".$row['l_name']."</td>";
-          echo "<td><button type='submit' class='btn btn-primary' name='reset' value='reset' id='res".$row['pid']."'>Reset Password</button>
+          echo "<tr><td></td><td>".$row['pid']."</td><td>".$row['f_name']."</td><td>".$row['l_name']."</td>";
+          echo "<td><button type='submit' class='btn btn-primary' name='reset' value='reset' id='res".$row['pid']."'>Student:Reset Password</button>
+          <td><button type='submit' class='btn btn-primary' name='reset' value='reset' id='respar".$row['pid']."'>Parent:Reset Password</button>
           <td><button type='submit' class='btn btn-danger' value='".$row['pid']."' id='del".$row['pid']."'>Delete</button></td>";
           echo "<script>
           $(document).ready(function(){
@@ -272,6 +273,14 @@
               })
             });
             $('#res".$row['pid']."').click(function(){
+              $.ajax({
+                  type: 'get',
+                  url : 'admin_users_update.php?pid=".$row['pid']."&value=reset',
+                  success: function(){alert('Successfully Reset!');},
+                  error: function(){alert('Cant Reset!');},
+              })
+            });
+            $('#respar".$row['pid']."').click(function(){
               $.ajax({
                   type: 'get',
                   url : 'admin_users_update.php?pid=".$row['pid']."&value=reset',
@@ -302,7 +311,7 @@
       <td></td>
     </thead>
     <tbody>
-    <!--?php
+    <?php
       $qry = "SELECT * from `users` where type='Committee'";
       $result = mysqli_query($mysqli,$qry);
       if($result){
@@ -335,7 +344,7 @@
         }
       }
     ?>
-    </tbody-->
+    </tbody>
 </table>
 
 <!--Faculty-->
@@ -357,6 +366,7 @@
           echo "<tr><td><!--input type='checkbox' /--></td><td>".$row['pid']."</td><td>".$row['f_name']."</td><td>".$row['l_name'];
          
           echo "<td><button type='submit' class='btn btn-primary' name='reset' value='reset' id='res".$row['pid']."'>Reset Password</button>
+          
           <td><button type='submit' class='btn btn-danger' value='".$row['pid']."' id='del".$row['pid']."'>Delete</button></td>";
 
           echo "<script>
@@ -403,8 +413,8 @@
           <td>
           <select class="" id="type" name="type">
             <option value="Committee">Committee</option>
-            <!--option value="Faculty">Faculty</option>
-            <option value="Student">Student</option-->
+            <option value="Faculty">Faculty</option>
+            <option value="Student">Student</option>
           </select>
         </td>
         <td><input type="text" value="" name="pid" required="1"><p style="color: red;">Note: Committee IDs start from 900000</p></td>
