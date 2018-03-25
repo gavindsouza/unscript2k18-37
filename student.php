@@ -63,7 +63,7 @@
             if(isset($_POST['search'])){
               $search = $_POST['valueToSearch'];
             } else {
-              $search = '';
+              $search ='';
             }
             $qry="SELECT distinct priority from `notices`";
             $res=mysqli_query($mysqli,$qry);
@@ -83,7 +83,7 @@
     </div>
     <div style="width:100%;">
   <?php
-    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY `nid` desc";
+    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY timestamp desc";
     $count = 0;
     
     $result = mysqli_query($mysqli,$qry);
@@ -111,19 +111,5 @@
 </div>
 </body>
 </html>
-<?php
-  session_start();
-  $_SESSION['$last_page']="index.php";
-  if(!isset($_SESSION['$pid'])){
-    echo '<script type="text/javascript">alert("Login First!")</script>';
-    header("Location: {$_SESSION['$last_page']}");
-    exit();
-  } else {
-    if($_SESSION['$type']!='Student'){
-      echo '<script type="text/javascript">alert("Only accessible to a student!");</script>';
-      header("Location: {$_SESSION['$last_page']}");
-      exit();
-    }
-  }
-?>
+
 <?php $_SESSION['$last_page'] = "index.php"; ?>

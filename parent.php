@@ -86,7 +86,7 @@
     </div>
     <div style="width:100%;">
   <?php
-    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY timestamp";
+    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY timestamp desc";
     $count = 0;
     
     $result = mysqli_query($mysqli,$qry);

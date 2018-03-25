@@ -66,14 +66,14 @@
 	    </div>
 	    <div class="col-md-6 mb-3">
 	      <label for="body">Body</label>
-	      <input type="text" class="form-control" id="body" name="body" placeholder="body" required>
+	      <textarea class="form-control" id="body" name="body" placeholder="body" required></textarea>
 	    </div>
 	  </div>
 	  <div class="row"> 
 	    <div class="col-md-3 mb-3">
 	      <label for="speaker_contact">Priority</label>
 	      <select style="float: left;" class="form-control" id="priority" name="priority">
-            <option value="Normal">Normal</option>
+            <option value="Low">Low</option>
             <option value="High">High</option>
             <option value="Moderate">Moderate</option>
         	</select>

@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include 'db.php';
   $_SESSION['$last_page'] = "index.php";
   if (isset($_SESSION['$pid'])) {
     if ($_SESSION['$type'] == 'Student') {
@@ -38,7 +39,6 @@
   	<div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto"></ul>
     <?php
-      include 'db.php';
       if (isset($_POST['submit'])) {
         $pid = mysqli_real_escape_string($mysqli,$_POST['pid']);
         $query = $mysqli->query("SELECT * FROM users WHERE pid = '$pid' LIMIT 1");
@@ -133,7 +133,7 @@
     </div>
     <div style="width:100%;">
   <?php
-    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY `nid` desc";
+    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY timestamp desc";
     $count = 0;
     
     $result = mysqli_query($mysqli,$qry);
@@ -141,13 +141,15 @@
     } 
     else  {
       while ($row = mysqli_fetch_assoc($result)) {
+        echo "<div class='container-fluid alert' style='float:left;width:device-width;'>";
           $count++;
           if($row['priority']=="Moderate")
-            echo "<div class='container-fluid alert alert-warning' style='float:left;width:device-width;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+            echo "<div class='alert alert-warning' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
           if($row['priority']=="High")
-            echo "<div class='container-fluid alert alert-danger' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+            echo "<div class='alert alert-danger' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
           if($row['priority']=="Low")
-            echo "<div class='container-fluid alert alert-success' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+            echo "<div class='alert alert-success' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
+          echo "</div>";
         }
       }
       if ($count == 0) {
@@ -159,4 +161,5 @@
 </div>
 </body>
 </html>
-<?php $_SESSION['$last_page']="index.php"; ?>
+
+<?php $_SESSION['$last_page'] = "index.php"; ?>
