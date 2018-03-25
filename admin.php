@@ -12,6 +12,16 @@
       exit();
     }
   }
+  if (isset($_POST['submit'])) {
+    include 'db.php';
+    $sql = "INSERT INTO `notices`(`timestamp`, `priority`, `header`, `description`) VALUES ('".date('Y-m-d', time())."','".$_POST['priority']."','".$_POST['header']."','".$_POST['body']."')";
+    $sql = $mysqli->query($sql);
+    if ($sql) {
+     	echo "<script>alert('Event Successfully Added!');</script>";
+    } else {
+     	echo "<script>alert('Error in Adding Event!');</script>";
+    }
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,8 +57,31 @@
   </div>
 </nav>
 <div class="lead container" style="">
-	<form>
-
+	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
+	  <div class="row">
+	    <div class="col-md-6 mb-3">
+	      <label for="header">Header</label>
+	      <input type="text" class="form-control" id="header" name="header" placeholder="Header" required>
+	    </div>
+	    <div class="col-md-6 mb-3">
+	      <label for="body">Body</label>
+	      <input type="text" class="form-control" id="body" name="body" placeholder="body" required>
+	    </div>
+	  </div>
+	  <div class="row"> 
+	    <div class="col-md-3 mb-3">
+	      <label for="speaker_contact">Priority</label>
+	      <select style="float: left;" class="form-control" id="priority" name="priority">
+            <option value="Normal">Normal</option>
+            <option value="High">High</option>
+            <option value="Moderate">Moderate</option>
+        	</select>
+	    </div>
+	  </div>
+	  <br>
+	  <div class="row" style="align-items: center; width: 100%; padding-left: 2%;">
+	  	<button class="btn btn-primary" type="submit" name="submit" value="Upload">Submit form</button>
+	  </div>
 	</form>
 	<h3>Functions Covered by Administrator:</h3>
 	<h4>User Management:</h4>

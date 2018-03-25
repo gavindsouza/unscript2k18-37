@@ -133,7 +133,7 @@
     </div>
     <div style="width:100%;">
   <?php
-    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY timestamp";
+    $qry = "SELECT * FROM `notices` where priority LIKE'%$search%' ORDER BY `nid` desc";
     $count = 0;
     
     $result = mysqli_query($mysqli,$qry);
@@ -148,7 +148,6 @@
             echo "<div class='container-fluid alert alert-danger' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
           if($row['priority']=="Low")
             echo "<div class='container-fluid alert alert-success' style='float:left;width:100%;'><strong><a href='#' class='alert-link'>".$row['header']."</a></strong><br><p>".$row['description']."</p></div>";
-          //echo "</div>";
         }
       }
       if ($count == 0) {
