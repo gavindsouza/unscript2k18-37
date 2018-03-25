@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
   session_start();
   $_SESSION['$last_page']="index.php";
@@ -109,3 +110,8 @@
 </body>
 </html>
 <?php $_SESSION['$last_page'] = "admin.php"; ?>
+=======
+<?php
+	$_SESSION['$last_page']="index.php";
+?>
+>>>>>>> a184a55eec59e5fa7f04e10d474e2d712bf7e8e2
